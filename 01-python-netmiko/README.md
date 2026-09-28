@@ -48,3 +48,20 @@ Target Host: Lab Gateway / Virtual Router (192.168.x.x)
 
 Authentication: Local AAA / Privilege 15 user credentials
 
+
+## Sequential vs Parallel Execution
+
+### 1. Sequential Execution (`Loops.py`)
+Iterates through network devices listed in `inventory.py` sequentially using a `for` loop. Connects to each router one-by-one to retrieve operational status (`show ip int brief`).
+
+- **Pros:** Easy to debug, low CPU memory footprint.
+- **Cons:** Slow when scaling across large inventories since latency accumulates per device.
+
+### 2. Multi-Threaded Execution (`Threading.py`)
+Utilizes Python's `concurrent.futures.ThreadPoolExecutor` (or `threading` module) to open SSH connections to all target devices concurrently.
+
+- **Pros:** Significantly faster completion times across multi-device deployments.
+- **Cons:** Requires thread synchronization and error handling for connection timeouts.
+
+
+
