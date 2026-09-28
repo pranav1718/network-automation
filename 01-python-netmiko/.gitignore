@@ -1,0 +1,9 @@
+# Python cache and environments
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Ignore local test logs or temporary TextFSM/Genie outputs
+*.log
+*.json
