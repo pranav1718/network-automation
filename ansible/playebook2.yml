@@ -1,0 +1,15 @@
+---
+- name: "Playbook to make config changes"
+  hosts: cisco
+  connection: network_cli
+
+  tasks:
+    - name: "Send some configs to the device"
+      cisco.ios.ios_config:
+        lines:
+          - "ntp server {{ ntp_server }}"
+      register: result
+
+    - name: "Print the result"
+      debug:
+        msg: "{{ result }}" 
